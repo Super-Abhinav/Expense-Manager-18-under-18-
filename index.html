@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Expense Manager</title>
+  <link rel="icon" href="icon.jpg">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="para/parallax.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-database.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <script src="init.js"></script>
+  <script src="account.js"></script>
+  
+</head>
+<body data-spy="scroll" data-target="#nav-index" data-offset="70">
+  <nav id="nav-index" class="navbar sticky-top navbar-expand-lg navbar-dark navcolor">
+    <a class="navbar-brand" href="#">
+      <img src="icon.jpg" class="logo" width="35" height="35" class="d-inline-block align-top" alt="">Expense Manager
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" href="#div-login" data-toggle="tooltip" title="Create new account or login">Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>  
+
+  <div id="div-login" style="min-height: 700px; position: relative" class="parallax-window" data-image-src="bg11.jpg" data-parallax="scroll">
+    <div class="container">
+      <div class="row" id="row-index">
+        <div class="col-sm-4" id="col-2">
+          <div id="index-form" class="verify">  
+            <div class="form-group">
+              <label for="emailIP">Email address</label>
+              <input type="email" required class="form-control" id="emailIP" aria-describedby="emailHelp" placeholder="Email">
+              <small id="emailHelp" class="form-text">Enter a valid email id as it will be verified by us.</small>
+            </div>
+            <div class="form-group">
+              <label for="passwordIP">Password</label>
+              <input type="password" required class="form-control" id="passwordIP" aria-describedby="passwordHelp" placeholder="Password">
+              <small id="passwordHelp" class="form-text">Forgot your password? <a href="#" onclick="forgotPassword($('#emailIP').val())">Click here.</a></small>
+            </div>  
+            <div class="row">
+              <div class="col-sm-6">
+                <button type="submit" class="btn btn-success btn-block" onclick="loginUser()">Login</button>  
+              </div>
+              <div class="col-sm-6">
+                <button type="submit" class="btn btn-success btn-block" onclick="signupUser()">Sign up</button>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-verify" tabindex="-1" role="dialog" aria-labelledby="modal-verify-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-verify-label">Verify Account</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          It seems like you have not verified your account yet. Please verify your account with the link sent in email.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button onclick="sendEmail()" type="button" class="btn btn-primary">Resend link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<style>
+  body {
+    background-image: url("bg11.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
+</body>
+</html>
